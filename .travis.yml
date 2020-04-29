@@ -1,0 +1,16 @@
+sudo: required
+services:
+    - docker
+
+script:
+    - docker build -t saadkanzallah/node3 .
+    - docker images saadkanzallah/node3
+
+before_deploy:
+    - docker login -u saadkanzallah -p saad1987
+
+deploy:
+    provider: script
+    script: docker push saadkanzallah/node3
+    on:
+        branch: master
